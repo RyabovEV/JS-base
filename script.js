@@ -21,11 +21,47 @@ xxxx
 xxxxx
 */
 
-/*let x = 0;
-while (x<101) {
-    console.log(x);
+function check(a,b) {
+    let i=0;    
+    if (a.length == 2) {
+        while(a[i]<= ++a.length){
+            if (a[i]!=1 && a[i]!=b) {
+                console.log("сброс");
+            return false;
+            }
+            i++;        
+        }
+        return b;
+    }
+    return false;
+}
+
+function compare(a) {
+    let i=1;
+    let arr=[];
+    while (i <= a) {
+        if (a%i == 0) {            
+            arr.push(i);
+        }
+    i++;
+    }
+    if (check(arr,a)) {
+        return a;
+    }
+}
+
+function primeNumber(params) {
+    let x = 0;
+    while (x<101) {
+        if (compare(x)) {
+        console.log(x);
+        }
     x++;
-}*/
+    }
+}
+
+primeNumber();
+
 
 /*let x = 0;
 do {
