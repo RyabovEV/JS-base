@@ -37,3 +37,11 @@
   .food-unit {
     background: red;
   }
+
+  .barrier-unit {
+    background: green;
+  }
+
+  #point {
+    color: white;
+  }
