@@ -1,5 +1,5 @@
-let FIELD_SIZE_X = 10; //размер поля
-let FIELD_SIZE_Y = 10; //размер поля
+let FIELD_SIZE_X = 5; //размер поля
+let FIELD_SIZE_Y = 5; //размер поля
 let SNAKE_SPEED = 300; // интервал в мс между перемещениями змейки
 let snake = []; // змейка
 let direction = "x-"; // по умолчанию змейка движется вверх, уменьшая координату x
@@ -210,9 +210,10 @@ function createFood() {
 
   let food_cell = document.querySelector("[data-cell='" + food_x + '-' + food_y +"']");
   let isSnake = food_cell.classList.contains('snake-unit'); // true || false
+  let isBarrier = food_cell.classList.contains('barrier-unit'); // true || false
   
   //если нет змейки
-  if(!isSnake) {
+  if(!isSnake && !isBarrier) {
     food_cell.classList.add('food-unit');
     foodCreated = true;
   }
@@ -226,20 +227,21 @@ function createBarrier() {
 
   let barrier_cell = document.querySelector("[data-cell='" + barrier_x + '-' + barrier_y +"']");
   let isSnake = barrier_cell.classList.contains('snake-unit'); // true || false
+  let isFood = barrier_cell.classList.contains('food-unit'); // true || false
   
   //если нет змейки
-  if(!isSnake) {
+  if(!isSnake && !isFood) {
     barrier_cell.classList.add('barrier-unit');
     barrierCreated = true;
-    setTimeout(deleteBarrier, 6000);
-    barrierCreated = false;
+    setTimeout(deleteBarrier,1000);
+    //barrierCreated = false;
   }
 }
 
 function deleteBarrier() {
   let barrierCell = document.querySelector('.barrier-unit');
   barrierCell.classList.remove('barrier-unit');
-  createBarrier();
+  setTimeout(createBarrier,1000);
 }
 
 function changeDirection(e) {
